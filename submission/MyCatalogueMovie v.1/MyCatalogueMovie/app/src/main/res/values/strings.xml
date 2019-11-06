@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">My Catalogue Movie</string>
+    <string name="some_error">Some error Occurred!</string>
+    <string name="tv_show_backdrop">TV Shows Backdrop</string>
+    <string name="tv_show_poster">Tv Show Poster</string>
+    <string name="show_title">Show Title</string>
+
+    <string name="rating">%s/10</string>
+    <string name="vote_count">(%s votes)</string>
+    <string name="release_date">Release date: %s</string>
+    <string name="summary">Summary</string>
+    <string name="trailers">Trailers</string>
+    <string name="not_found">Film tidak ditemukan</string>
+    <string name="text_empty">Field tidak boleh kosong</string>
+    <string name="cari_film">Cari Film...</string>
+    <string name="cari">Cari</string>
+
+</resources>
