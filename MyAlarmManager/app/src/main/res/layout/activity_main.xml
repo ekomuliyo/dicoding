@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tv_one_time_alarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/one_time_alarm"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="16sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical">
+        <ImageButton
+            android:id="@+id/btn_once_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_date_range_black_24dp"/>
+        <TextView
+            android:id="@+id/tv_once_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tanggal_alarm" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical">
+        <ImageButton
+            android:id="@+id/btn_once_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_access_time_black_24dp"/>
+        <TextView
+            android:id="@+id/tv_once_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/waktu_alamr"/>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/et_once_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/pesan_alarm"
+        android:layout_marginTop="8dp"/>
+
+
+    <Button
+        android:id="@+id/btn_set_once"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/set_one_time_alarm"
+        />
+
+    <TextView
+        android:id="@+id/tv_repeating_alarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/repeating_time_alarm"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="16sp"/>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical">
+        <ImageButton
+            android:id="@+id/btn_repeating_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_access_time_black_24dp"/>
+        <TextView
+            android:id="@+id/tv_repeating_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/waktu_alamr"/>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/et_repeating_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/pesan_alarm"
+        android:layout_marginTop="8dp"/>
+
+
+    <Button
+        android:id="@+id/btn_set_repeating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/set_repeating_time"
+        />
+
+
+
+
+
+
+
+</LinearLayout>

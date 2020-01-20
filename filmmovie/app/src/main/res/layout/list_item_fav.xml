@@ -12,7 +12,7 @@
     android:elevation="2dp">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
@@ -30,8 +30,8 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:fontFamily="sans-serif-medium"
-            tools:text="@string/ini_isi_judul"
-            android:layout_toRightOf="@id/iv_movie_fav"
+            tools:text="@string/value_title"
+            android:layout_toEndOf="@id/iv_movie_fav"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
             android:maxLines="2"/>
@@ -40,9 +40,9 @@
             android:id="@+id/tv_overview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="@string/ini_isi_overview"
+            tools:text="@string/value_overview"
             android:layout_below="@id/tv_title"
-            android:layout_toRightOf="@id/iv_movie_fav"
+            android:layout_toEndOf="@id/iv_movie_fav"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="8dp"
@@ -54,12 +54,14 @@
             android:layout_height="wrap_content"
             android:text="@string/delete_from_favorite"
             android:layout_below="@id/tv_overview"
-            android:layout_toRightOf="@id/iv_movie_fav"
+            android:layout_toEndOf="@id/iv_movie_fav"
             android:background="@drawable/my_button"
             android:textColor="@color/textColorPrimary"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:layout_margin="8dp"/>
+            android:layout_margin="8dp"
+            android:textSize="@dimen/size_text_button"
+            android:layout_centerHorizontal="true"/>
 
 
 

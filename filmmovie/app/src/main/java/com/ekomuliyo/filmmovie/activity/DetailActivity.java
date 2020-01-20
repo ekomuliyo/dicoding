@@ -68,7 +68,7 @@ public class DetailActivity extends AppCompatActivity {
         movieDao = Room.databaseBuilder(this, MovieDatabase.class, "db_movie")
                 .allowMainThreadQueries()
                 .build()
-                .getMovieDao(); // membuat database baru
+                .getMovieDao(); // memanggil database
 
     }
 
@@ -113,15 +113,22 @@ public class DetailActivity extends AppCompatActivity {
         // memasukan data ke database
         movieDao.insert(movie);
         setResult(RESULT_OK);
+
+        // mengupdate data widget
+        Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        sendBroadcast(intent);
     }
 
     private void setFavoriteUnSelected(MenuItem item){
-        item.setIcon(R.drawable.ic_favorite_border_white_24dp);
+//        item.setIcon(R.drawable.ic_favorite_border_white_24dp);
         isBtnFav = false;
 
         // menghapus data dari database berdasarkan id
         movieDao.deleteById(movie.getId());
         setResult(RESULT_OK);
+
+        Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        sendBroadcast(intent);
     }
 
 

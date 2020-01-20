@@ -1,33 +1,42 @@
 <resources>
-    <string name="app_name">Film Movie</string>
+    <string name="app_name">My Movie</string>
     <string name="movies">Movies</string>
     <string name="tv_shows">TV Shows</string>
     <string name="favorites">Favorites</string>
     <string name="search">Search</string>
     <string name="language">Language</string>
     <string name="setting">Setting</string>
-    <string name="search_hint">Cari Film..</string>
+    <string name="search_hint">Search Movie..</string>
     <string name="todo">TODO</string>
     <string name="text_content">12sp</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="not_found">Data yang anda cari tidak tersedia</string>
+    <string name="not_found">Nothing found, try another query!</string>
     <string name="details">Details</string>
     <string name="succes_insert_fav">Add to favorites successfully</string>
     <string name="delete_fav">Delete from favorites successfully</string>
-    <string name="ini_isi_judul">Ini Isi Judul</string>
+    <string name="value_title">value Title</string>
     <string name="release_date">Release Date</string>
-    <string name="ini_isi_release_date">Ini Isi Release Date</string>
-    <string name="ini_isi_vote_count">Ini Isi Vote Count</string>
-    <string name="ini_isi_vote_average">Ini Isi Vote Average</string>
-    <string name="ini_isi_language">Ini isi Language</string>
+    <string name="value_release_date">value Release Date</string>
+    <string name="value_vote_count">value Vote Count</string>
+    <string name="value_vote_average">value Vote Average</string>
+    <string name="value_language">value Language</string>
     <string name="overview">Overview</string>
-    <string name="ini_isi_overview">Ini Isi Overview</string>
+    <string name="value_overview">value Overview</string>
     <string name="delete_from_favorite">Delete From Favorite</string>
     <string name="confirm_title">Confirm to delete</string>
     <string name="confirm_message">Are you sure want to delete this item?</string>
     <string name="string_yes">Yes</string>
     <string name="string_no">No</string>
     <string name="succes_info">Deleted is succesfully</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="data_is_empty">Data is Empty</string>
+    <string name="release_reminder">Release Reminder</string>
+    <string name="reminder_showing_the_movie_that_released_today">Reminder showing the movie that released today</string>
+    <string name="daily_reminder">Daily Reminder</string>
+    <string name="reminder_for_return_to_this_app">Reminder for return to this app</string>
+    <string name="notification_setting_title">Notification Setting</string>
+    <string name="daily_message_reminder">Let\\\'s see what movies are popular today!</string>
+    <string name="release_today_message">has been released today!</string>
 </resources>

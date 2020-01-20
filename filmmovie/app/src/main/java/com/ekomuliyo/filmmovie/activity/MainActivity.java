@@ -9,7 +9,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -31,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.navigation)
     BottomNavigationView navigation;
     private SearchView mSearchView;
-
 
 
     @Override
@@ -144,5 +145,21 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_container, fragment);
         transaction.commit();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        final int items = item.getItemId();
+        switch (items){
+            case R.id.btn_localization:
+                Intent intentSetting = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+                startActivity(intentSetting);
+                break;
+            case R.id.btn_notification:
+                Intent intentNotification = new Intent(this, NotificationSettingActivity.class);
+                startActivity(intentNotification);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

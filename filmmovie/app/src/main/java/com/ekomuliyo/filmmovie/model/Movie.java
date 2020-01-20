@@ -22,8 +22,6 @@ public class Movie implements Parcelable {
     private String releaseDate;
     @SerializedName("overview")
     private String overview;
-    @SerializedName("description")
-    private String description;
     @SerializedName("vote_average")
     private String voteAverage;
     @SerializedName("vote_count")
@@ -67,14 +65,6 @@ public class Movie implements Parcelable {
 
     public void setOverview(String overview) {
         this.overview = overview;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getVoteAverage() {
@@ -132,7 +122,6 @@ public class Movie implements Parcelable {
         this.title = in.readString();
         this.overview = in.readString();
         this.releaseDate = in.readString();
-        this.description = in.readString();
         this.voteAverage = in.readString();
         this.voteCount = in.readString();
         this.originalLanguage = in.readString();
@@ -164,7 +153,6 @@ public class Movie implements Parcelable {
         dest.writeString(this.title);
         dest.writeString(this.overview);
         dest.writeString(this.releaseDate);
-        dest.writeString(this.description);
         dest.writeString(this.voteAverage);
         dest.writeString(this.voteCount);
         dest.writeString(this.originalLanguage);

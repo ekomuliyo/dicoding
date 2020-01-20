@@ -17,4 +17,6 @@ public interface ApiEndponts {
     @GET("search/tv")
     Call<MovieResponse> searchTVShow(@Query("query") String query);
 
+    @GET("discover/movie")
+    Call<MovieResponse> getReleaseMovie(@Query("primary_release_date.gte") String now, @Query("primary_release_date.lte") String now1);
 }

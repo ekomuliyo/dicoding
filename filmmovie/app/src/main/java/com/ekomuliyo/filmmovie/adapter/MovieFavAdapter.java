@@ -107,8 +107,8 @@ public class MovieFavAdapter extends RecyclerView.Adapter<MovieFavAdapter.ViewHo
                             movies.remove(movie);
                             notifyDataSetChanged();
                             // melakukan update widget melalui intent broadcast
-//                            Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-//                            context.sendBroadcast(intent);
+                            Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+                            context.sendBroadcast(intent);
                             Snackbar.make(v, R.string.succes_info, Snackbar.LENGTH_LONG).show();
                         }
                     });

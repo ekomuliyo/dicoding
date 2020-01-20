@@ -1,7 +1,5 @@
 package com.ekomuliyo.filmmovie.adapter;
 
-import android.content.Context;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;

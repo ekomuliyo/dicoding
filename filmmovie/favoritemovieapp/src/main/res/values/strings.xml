@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">widgetfavoritemovie</string>
+    <string name="app_name">Favorit Movie</string>
+    <string name="value_title">value title</string>
+    <string name="value_overview">value overview</string>
 </resources>

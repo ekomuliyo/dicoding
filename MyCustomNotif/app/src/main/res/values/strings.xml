@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">My Custom Notif</string>
+    <string name="show_notif">Show Notif</string>
+    <string name="hint_reply">Masukan reply</string>
+    <string name="notif_title_sent">Reply Send</string>
+    <string name="notif_content_sent">Message has been sent</string>
+    <string name="notif_action_reply">Reply Notif</string>
+</resources>

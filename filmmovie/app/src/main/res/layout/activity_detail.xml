@@ -55,7 +55,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_backrop"
             android:fontFamily="sans-serif-condensed-medium"
-            android:text="@string/ini_isi_judul"
+            android:text="@string/value_title"
             android:textSize="16sp"
             android:textStyle="bold"/>
 
@@ -83,7 +83,7 @@
             app:layout_constraintStart_toEndOf="@id/iv_poster"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/release_date"
-            android:text="@string/ini_isi_release_date"/>
+            android:text="@string/value_release_date"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/garis_1"
@@ -120,7 +120,7 @@
             android:id="@+id/tv_vote_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ini_isi_vote_count"
+            android:text="@string/value_vote_count"
             android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@id/icon_vote_count"
             app:layout_constraintStart_toStartOf="parent"
@@ -140,7 +140,7 @@
             android:id="@+id/tv_vote_average"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ini_isi_vote_average"
+            android:text="@string/value_vote_average"
             android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@id/icon_vote_average"
             app:layout_constraintStart_toStartOf="@id/garis_2"
@@ -160,7 +160,7 @@
             android:id="@+id/tv_language"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ini_isi_language"
+            android:text="@string/value_language"
             android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@id/icon_language"
             app:layout_constraintStart_toStartOf="@id/garis_3"
@@ -182,7 +182,7 @@
             android:id="@+id/tv_overview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/ini_isi_overview"
+            android:text="@string/value_overview"
             android:layout_marginTop="8dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"

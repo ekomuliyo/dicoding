@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">My Alarm Manager</string>
+    <string name="one_time_alarm">One Time Alarm</string>
+    <string name="tanggal_alarm">Tanggal Alarm</string>
+    <string name="waktu_alamr">Waktu Alarm</string>
+    <string name="pesan_alarm">Pesan Alarm</string>
+    <string name="set_one_time_alarm">Set One Time</string>
+    <string name="set_repeating_time_alarm">Set Repeating Time</string>
+    <string name="repeating_time_alarm">Repeating Time Alarm</string>
+    <string name="set_repeating_time">Set Repeating Time</string>
+</resources>
