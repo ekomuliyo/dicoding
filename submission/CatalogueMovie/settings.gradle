@@ -1,2 +1,0 @@
-include ':app', ':widgetfavoritemovie'
-rootProject.name='Catalogue Movie'
