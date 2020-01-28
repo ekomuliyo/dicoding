@@ -45,6 +45,7 @@ public class SearchActivity extends AppCompatActivity {
         rvMovies.setAdapter(adapter);
 
 
+
         SearchActivityViewModel viewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(SearchActivityViewModel.class);
         viewModel.setMovieOrTvList(query);
         final Observer<ArrayList<Movie>> getMovieOrTv = new Observer<ArrayList<Movie>>() {

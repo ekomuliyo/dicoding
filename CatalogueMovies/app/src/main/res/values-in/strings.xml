@@ -1,63 +1,49 @@
 <resources>
-    <string name="app_name">Catalogue Movies</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="app_name">Katalog Film</string>
+    <string name="navigation_drawer_open">Buka laci navigasi</string>
+    <string name="navigation_drawer_close">Tutup laci navigasi</string>
     <string name="nav_header_title">Eko Muliyo</string>
     <string name="nav_header_subtitle">ekomuliyo@gmail.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="nav_header_desc">Atas Navigasi</string>
+    <string name="action_settings">Pengaturan</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_favorite">Favorite</string>
+    <string name="menu_home">Beranda</string>
+    <string name="menu_favorite">Favorit</string>
     <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
-    <string name="menu_notification">Notification</string>
-    <string name="menu_language">Language</string>
-    <string name="settings">Settings</string>
+    <string name="menu_tools">Peralatan</string>
+    <string name="menu_notification">Notifikasi</string>
+    <string name="menu_language">Bahasa Indonesia</string>
+    <string name="settings">Pengaturan</string>
     <string name="default_font" translatable="true">sans-serif</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="movies">Movies</string>
+    <string name="movies">Film</string>
     <string name="tvshows">TV Shows</string>
-    <string name="search">Search</string>
-    <string name="search_hint">Search...</string>
-    <string name="textview_title">TextView Title</string>
-    <string name="textview_release_date">TextView ReleaseDate</string>
-    <string name="value_title">value Title</string>
-    <string name="storyline">Storyline</string>
-    <string name="message_success_add_favorite">Successfully added to favorites</string>
-    <string name="message_success_remove_favorite">Successfully removing from favorites</string>
-    <string name="message_fail_search">Failed search movie</string>
-    <string name="title_search_activity">Search Activity</string>
-    <string name="value_overview">value Overview</string>
-    <string name="confirm_to_delete">Confirm to delete</string>
-    <string name="are_you_sure_want_to_delete_this_item">Are your sure want to delete this item?</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="appwidget_text">Catalogue Movies</string>
-    <string name="add_widget">Add widget</string>
-    <string name="empty_text">Empty</string>
-    <string name="title_activity_notification_settings">Notification Settings</string>
+    <string name="search">Pencarian</string>
+    <string name="search_hint">Cari...</string>
+    <string name="textview_title">TextView judul</string>
+    <string name="textview_release_date">TextView tanggal rilis</string>
+    <string name="value_title">value judul</string>
+    <string name="storyline">Sinopsi</string>
+    <string name="message_success_add_favorite">Berhasil ditambahkan ke favorit</string>
+    <string name="message_success_remove_favorite">Berhasil menghapus dari favorit</string>
+    <string name="message_fail_search">Pencarian film gagal</string>
+    <string name="title_search_activity">Aktivitas Pencarian</string>
+    <string name="value_overview">value ringkasan</string>
+    <string name="confirm_to_delete">Konfirmasikan untuk menghapus</string>
+    <string name="are_you_sure_want_to_delete_this_item">Anda yakin ingin menghapus item ini?</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+    <string name="appwidget_text">Katalog Film</string>
+    <string name="add_widget">Tambahkan widget</string>
+    <string name="empty_text">Kosong</string>
+    <string name="title_activity_notification_settings">Pengatusan Notifikasi</string>
 
-    <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
-
-    <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
-
-    <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
-    <string name="release_reminder">Release Reminder</string>
-    <string name="reminder_showing_the_movie_that_released_today">Reminder showing the movie that released today</string>
-    <string name="daily_reminder">Daily Reminder</string>
-    <string name="reminder_for_return_to_this_app">Reminder for return to this app</string>
-    <string name="daily_message_reminder">Let\'s see what movies are popular today!</string>
-    <string name="release_message_reminder">has been released today!</string>
+    <string name="release_reminder">Pengingat Rilis</string>
+    <string name="reminder_showing_the_movie_that_released_today">Pengingat untuk menunjukkan film yang dirilis hari ini</string>
+    <string name="daily_reminder">Pengingat Harian</string>
+    <string name="reminder_for_return_to_this_app">Pengingat untuk kembali ke aplikasi ini</string>
+    <string name="daily_message_reminder">Mari kita lihat film apa yang populer hari ini!</string>
+    <string name="release_message_reminder">telah dirilis hari ini!</string>
 </resources>

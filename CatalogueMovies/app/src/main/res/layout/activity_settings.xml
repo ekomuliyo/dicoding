@@ -1,9 +1,48 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    android:background="@color/colorPrimary">
 
-    <FrameLayout
-        android:id="@+id/settings"
+
+    <TextView
+        android:id="@+id/tv_release_reminder"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:text="@string/release_reminder"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Switch
+        android:id="@+id/switch_release_reminder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_release_reminder"
+        android:text="@string/reminder_showing_the_movie_that_released_today"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/tv_daily_reminder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/daily_reminder"
+        app:layout_constraintTop_toBottomOf="@id/switch_release_reminder"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"/>
+
+    <Switch
+        android:id="@+id/switch_daily_reminder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/reminder_for_return_to_this_app"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/tv_daily_reminder"
+        android:layout_marginTop="8dp"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

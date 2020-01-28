@@ -53,11 +53,6 @@ public class MoviesTvShowAdapter extends RecyclerView.Adapter<MoviesTvShowAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        //handle data yang tidak sesuai data mapping model
-        if (movieArrayList.get(position).getType().equalsIgnoreCase("person")){
-            movieArrayList.remove(position);
-        }
-
         String releaseDate = movieArrayList.get(position).getReleaseDate();
 
         SimpleDateFormat month_date = new SimpleDateFormat("MMMM dd, yyyy", Locale.ENGLISH);

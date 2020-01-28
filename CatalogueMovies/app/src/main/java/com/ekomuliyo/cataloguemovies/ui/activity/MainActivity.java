@@ -24,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -44,15 +45,13 @@ public class MainActivity extends AppCompatActivity
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    HomeViewModel homeViewModel;
+//    HomeViewModel homeViewModel;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
 
         ButterKnife.bind(this);
@@ -77,10 +76,23 @@ public class MainActivity extends AppCompatActivity
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int id = menuItem.getItemId();
+
+                // handel search activity
                 if (id == R.id.nav_home){
                     stateSearchView = true;
                 }else if(id == R.id.nav_favorite){
                     stateSearchView = false;
+                }
+
+                switch (id){
+                    case R.id.nav_notification:
+                        Intent intent = new Intent(MainActivity.this, NotificationSettingsActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.nav_language:
+                        Intent intentLangueage = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+                        startActivity(intentLangueage);
+                        break;
                 }
 
                 NavigationUI.onNavDestinationSelected(menuItem, navController);

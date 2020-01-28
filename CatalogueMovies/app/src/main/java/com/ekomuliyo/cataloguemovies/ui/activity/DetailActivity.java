@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import android.appwidget.AppWidgetManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -74,14 +76,12 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-
         movieDAO = Room.databaseBuilder(this, DbMovie.class, "db_movie")
                 .allowMainThreadQueries()
                 .build()
                 .getMovieDAO();
 
         init();
-
     }
 
     @Override
@@ -122,13 +122,23 @@ public class DetailActivity extends AppCompatActivity {
                     fabFavorite.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_star_border_white_24dp));
                     Toast.makeText(DetailActivity.this, getResources().getString(R.string.message_success_remove_favorite), Toast.LENGTH_SHORT).show();
                     movieDAO.deletedById(movie.getId());
+                    setResult(RESULT_OK);
                     isBtnFav = false;
+
+                    // mengupdate data widget
+                    Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+                    sendBroadcast(intent);
 
                 }else {
                     fabFavorite.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_star_white_24dp));
-                    movieDAO.insert(movie);
                     Toast.makeText(DetailActivity.this, getResources().getString(R.string.message_success_add_favorite), Toast.LENGTH_SHORT).show();
+                    movieDAO.insert(movie);
+                    setResult(RESULT_OK);
                     isBtnFav = true;
+
+                    // mengupdate data widget
+                    Intent intent = new Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+                    sendBroadcast(intent);
                 }
             }
         });
@@ -142,7 +152,7 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         // menampilkan data genre
-        if (movie.getGenre_ids() != null) {
+        if (!movie.getGenre_id().equalsIgnoreCase("")) {
 
             String genreId = movie.getGenre_id();
 

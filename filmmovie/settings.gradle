@@ -1,2 +1,0 @@
-include ':app', ':favoritemovieapp'
-rootProject.name='Film Movie'

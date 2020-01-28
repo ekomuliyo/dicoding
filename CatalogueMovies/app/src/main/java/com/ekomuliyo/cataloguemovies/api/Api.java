@@ -13,9 +13,11 @@ public interface Api {
     @GET("discover/{type}")
     Call<MovieResponse> getMoviesOrTvShows(@Path("type") String type);
 
-
     // get data movie and tv
     @GET("search/multi")
     Call<MovieResponse> getSearchMovieOrTvShow(@Query("query") String query);
 
+    // get release movie
+    @GET("discover/movie")
+    Call<MovieResponse> getReleaseMovie(@Query("primary_release_date.gte") String now,@Query("primary_release_date.lte") String now2);
 }

@@ -9,7 +9,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:fontFamily">sans-serif</item>
-        <item name="fontFamily">sans-serif</item>
+        <item name="fontFamily">@string/default_font</item>
         <item name="android:textColor">@color/colorTextWhite</item>
         <item name="android:textColorSecondary">@color/colorTextWhite</item>
         <item name="android:editTextColor">@android:color/white</item>
@@ -31,7 +31,7 @@
 
     <style name="RatingBar" parent="Theme.AppCompat">
         <item name="colorControlNormal">#707070</item>
-        <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="colorControlActivated">@color/colorYellowRating</item>
     </style>
 
 </resources>

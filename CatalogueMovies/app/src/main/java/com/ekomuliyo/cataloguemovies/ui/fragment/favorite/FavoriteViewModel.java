@@ -8,15 +8,15 @@ import com.ekomuliyo.cataloguemovies.model.Movie;
 
 import java.util.ArrayList;
 
-public class MovieFavoriteViewModel extends ViewModel {
+public class FavoriteViewModel extends ViewModel {
 
     private MutableLiveData<ArrayList<Movie>> movieList = new MutableLiveData<>();
 
-    public void setFavoriteMovie(ArrayList<Movie> movie){
+    public void setFavorite(ArrayList<Movie> movie){
         movieList.postValue(movie);
     }
 
-    public LiveData<ArrayList<Movie>> getMovieFavorite(){
+    public LiveData<ArrayList<Movie>> getFavorite(){
         return movieList;
     }
 }
