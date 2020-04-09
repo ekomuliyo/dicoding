@@ -147,3 +147,78 @@ Promise.all(promises)
     .then(resolvedValue => {
         console.log(resolvedValue);
     })
+
+// Async Await adalah sebuah metode penulisan code dengan gaya synchronous namun pada kenyataanya asynchronous
+async function makeCoffe5(){
+    try{
+        const coffe = await getCoffe();
+        console.log(coffe);
+    }catch(rejectedReason){
+        console.log(rejectedReason);
+    }
+}
+
+const getCoffe = () => {
+    return new Promise((resolve, reject) => {
+        const seeds = 5;
+        setTimeout(() => {
+            if(seeds >= 10){
+                resolve("Coffe didapatkan!");
+            }else{
+                reject("kopi habis!");
+            }
+        }, 1000);
+    });
+}
+
+makeCoffe5();
+
+// Chaining Promise menggunakan async await
+const state2 = {
+    isCoffeMakerReady: true,
+    seedStocks: {
+        arabica: 250,
+        robusta: 60,
+        liberica: 80
+    }
+}
+
+const getSeeds2 = (type, miligrams) => {
+    return new Promise((resolve, rejected) => {
+        if(state2.seedStocks[type] >= miligrams){
+            state2.seedStocks[type] -= miligrams;
+            resolve("Biji kopi didapatkan atau tersedia");
+        }else{
+            rejected("maaf stock habis");
+        }
+    });
+}
+
+const makeCoffe6 = seeds => {
+    return new Promise((resolve, rejected) => {
+        if(state2.isCoffeMakerReady){
+            resolve(`kopi berhasil dibuat ${seeds}`);
+        }else{
+            rejected("maaf mesin kopi tidak dapat digunakan");
+        }
+    });
+}
+
+const servingToTable2 = coffe => {
+    return new Promise(resolve => {
+        resolve(`pesanan Pesanan kopi ${coffe} selesai dengan chain promise async await`);
+    })
+}
+
+async function reserveCoffe2(type, miligrams){
+    try {
+        const seeds = await getSeeds2(type, miligrams);
+        const coffee = await makeCoffe6(seeds);
+        const result = await servingToTable2(coffee);
+        console.log(result);
+    } catch (rejectedReason) {
+        console.log(rejectedReason);
+    }
+}
+
+reserveCoffe2("liberica", 80);
