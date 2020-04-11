@@ -1,3 +1,5 @@
+import DataSource from "../data/data-source.js"
+
 const main = () => {
     const searchElement = document.querySelector("#searchElement");
     const buttonSearchElement = document.querySelector("#searchButtonElement");
@@ -5,7 +7,6 @@ const main = () => {
 
     const onButtonSearchClicked = async () => {
         try {
-            console.log(searchElement.value);
             const result = await DataSource.searchClub(searchElement.value);
             renderResult(result);
         } catch (message) {
@@ -38,3 +39,5 @@ const main = () => {
 
     buttonSearchElement.addEventListener("click", onButtonSearchClicked);
 };
+
+export default main;

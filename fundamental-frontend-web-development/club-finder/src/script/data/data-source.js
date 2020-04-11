@@ -1,3 +1,5 @@
+import clubs from "./clubs.js"
+
 class DataSource{
 
     // keyword static untuk pengakses method ini, ketika dipanggil dari class, tanpa membuat instance atau pakai keyword new
@@ -12,3 +14,5 @@ class DataSource{
         });
     }
 }
+
+export default DataSource;
