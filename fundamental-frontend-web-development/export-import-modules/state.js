@@ -4,5 +4,7 @@ const coffeStock = {
     liberica: 2000
 }
 
-module.exports = coffeStock;
-// console.log(module);
+const isCoffeMaker = true
+
+module.exports = {coffeStock, isCoffeMaker};
+console.log(module);
