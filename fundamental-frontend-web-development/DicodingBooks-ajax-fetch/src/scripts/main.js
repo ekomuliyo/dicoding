@@ -1,20 +1,84 @@
 function main() {
 
+    const baseUrl = "https://web-server-book-dicoding.appspot.com";
+
     const getBook = () => {
-        // tuliskan kode di sini!
+        const xhr = new XMLHttpRequest();
+        
+        xhr.onload = function(){
+            const response = JSON.parse(this.responseText);
+            if(response.error){
+                showResponseMessage(response.message);
+            }else{
+                renderAllBooks(response.books);
+            }
+        }
+
+        xhr.open("GET", `${baseUrl}/list`);
+        xhr.send();
     };
 
 
     const insertBook = (book) => {
-        // tuliskan kode di sini!
+        const xhr = new XMLHttpRequest();
+
+        xhr.onload = function(){
+            const response = JSON.parse(this.responseText);
+            showResponseMessage(response.message);
+            getBook();
+        }
+
+        xhr.onerror = function(){
+            showResponseMessage();
+        }
+
+        xhr.open("POST", `${baseUrl}/add`);
+
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.setRequestHeader("X-Auth-Token", "12345");
+
+        xhr.send(JSON.stringify(book));
     };
 
     const updateBook = (book) => {
-        // tuliskan kode di sini!
+        const xhr = new XMLHttpRequest();
+
+        xhr.onload = function(){
+            const response = JSON.parse(this.responseText);
+            showResponseMessage(response.message);
+            getBook();
+        }
+
+        xhr.onerror = function(){
+            showResponseMessage();
+        }
+
+        xhr.open("PUT", `${baseUrl}/edit/${book.id}`);
+
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.setRequestHeader("X-Auth-Token", "12345");
+
+        xhr.send(JSON.stringify(book));
+
     };
 
     const removeBook = (bookId) => {
-        // tuliskan kode di sini!
+        const xhr = new XMLHttpRequest();
+
+        xhr.onload = function(){
+            const response = JSON.parse(this.responseText);
+            showResponseMessage(response.message);
+            getBook();
+        }
+
+        xhr.onerror = function(){
+            showResponseMessage();
+        }
+
+        xhr.open("DELETE", `${baseUrl}/delete/${bookId}`);
+
+        xhr.setRequestHeader("X-Auth-Token", "12345");
+        xhr.send();
     };
 
 
