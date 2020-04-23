@@ -14,9 +14,11 @@ class ClubList extends HTMLElement{
     render(){
         this.shadowDOM.innerHTML = "";
         this._clubs.forEach(club => {
-            const clubItemElement = document.createElement("club-item");
-            clubItemElement.club = club;
-            this.shadowDOM.appendChild(clubItemElement);
+            if(club.strTeamBanner != null){
+                const clubItemElement = document.createElement("club-item");
+                clubItemElement.club = club;
+                this.shadowDOM.appendChild(clubItemElement);
+            }
         });
     }
 
