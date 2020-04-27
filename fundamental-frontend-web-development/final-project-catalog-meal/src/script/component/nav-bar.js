@@ -1,3 +1,4 @@
+import logo from "../../assets/logo.png"
 class NavBar extends HTMLElement{
     constructor(){
         super();
@@ -37,7 +38,7 @@ class NavBar extends HTMLElement{
 
         <nav class="navbar navbar-light bg-light">
             <a class="navbar-brand">
-                <img src="./src/assets/food.png" width="30" height="30" class="d-inline-block align-top">
+                <img src="${logo}" width="30" height="30" class="d-inline-block align-top">
                 Katalog Makananku
             </a>
             <form class="form-inline">

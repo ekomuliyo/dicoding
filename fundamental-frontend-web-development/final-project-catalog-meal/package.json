@@ -5,12 +5,17 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --config webpack.dev.js --open"
+    "dev": "webpack-dev-server --config webpack.dev.js --open",
+    "build": "webpack --config webpack.prod.js"
   },
   "author": "eko muliyo",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "babel-loader": "^8.1.0",
     "css-loader": "^3.5.3",
+    "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.2.0",
     "jquery": "^3.5.0",
     "popper.js": "^1.16.1",
