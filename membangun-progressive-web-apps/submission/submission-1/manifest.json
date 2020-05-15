@@ -1,0 +1,17 @@
+{
+    "name": "Galeriku",
+    "short_name": "Galeriku",
+    "theme_color": "#42a5f5",
+    "background_color": "#4399df",
+    "display": "fullscreen",
+    "start_url": "/index.html",
+    "icons": [
+        {
+            "src": "/assets/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        }
+    ]
+
+  }
