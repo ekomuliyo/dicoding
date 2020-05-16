@@ -9,6 +9,9 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="./css/main.css">
     <link rel="manifest" href="./manifest.json">
+
+    <!-- add to home screen for ios -->
+    <link rel="apple-touch-icon" href="./assets/icon-192x192.png">
     <title>GaleriKu</title>
 </head>
 
@@ -36,19 +39,3 @@
 <script src="./js/scripts.js"></script>
 
 </html>
-<script>
-    if("serviceWorker" in navigator){
-        window.addEventListener('load', function(){
-            navigator.serviceWorker
-                .register("/service-worker.js")
-                .then(function(){
-                    console.log('berhasil menambahkan service worker');
-                }).catch(function(){
-                    console.log('gagal menambahkan service worker');
-                });
-        });
-    }
-    else{
-        alert('browser tidak mendukung service worker');
-    }
-</script>

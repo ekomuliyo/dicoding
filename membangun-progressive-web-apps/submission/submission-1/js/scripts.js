@@ -1,3 +1,19 @@
+// cek support web worker
+if("serviceWorker" in navigator){
+  window.addEventListener('load', function(){
+      navigator.serviceWorker
+          .register("/service-worker.js")
+          .then(function(){
+              console.log('berhasil menambahkan service worker');
+          }).catch(function(){
+              console.log('gagal menambahkan service worker');
+          });
+  });
+}
+else{
+  alert('browser tidak mendukung service worker');
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   // initial menu sidenav
   const elementSideNav = document.querySelectorAll('.sidenav');
@@ -11,8 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
   loadNavSide();
 
   // mengatur url root ke halaman home
-  var page = window.location.hash.substr(1);
-  if(page == "") page = "beranda";
+  const page = window.location.hash.substr(1);
+  if(page === "") page = "beranda";
   loadPage(page); 
 
 
