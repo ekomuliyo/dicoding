@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification API</title>
+</head>
+<body>
+    <h1>Notification API</h1>
+
+    <button onclick="showNotificationSederhana()">Notifikasi sederhana dengan title dan body</button>
+    <button onclick="showNotificationIcon()">Notifikasi dengan gambar</button>
+    <button onclick="showNotificationBadge()">Notifikasi dengan badge</button>
+    <button onclick="showNotificationActions()">Notifikasi dengan Actions</button>
+    <button onclick="showNotificationTag()">Notifikasi dengan Tag</button>
+    <button onclick="showNotificationSilent()">Notifikasi dengan Slient / diam</button>
+    <script type="text/javascript">
+
+        // fungsi untuk meminta izin user notification API
+        const requestPermission = () => {
+            Notification.requestPermission()
+                .then(result => {
+                    if(result === 'denied') {
+                        console.log('Fitur notifikasi tidak dijalankan');
+                        return;
+                    }
+                    else if(result === 'default') {
+                        console.log('Pengguna menutup kota dialaog permintaan izin');
+                        return;
+                    }
+                    
+                    console.log('fitur notifikasi diizinkan');
+                });
+        }
+
+        const registerServiceWorker = () => {
+            return navigator.serviceWorker.register('service-worker.js')
+                .then(registration => {
+                    console.log('ServiceWorker berhasil di registrasi');
+                    return registration;
+                })
+                .catch(err => {
+                    console.log('ServiceWorker gagal di registrasi');
+                })
+        }
+
+        // Periksa service worker
+        if(!('serviceWorker') in navigator){
+            console.log('ServiceWorker tidak didukung di browser ini!');
+        }
+        else {
+            registerServiceWorker();
+        }
+
+        // Periksa fitur Notification API
+        if('Notification' in window) {
+            requestPermission();
+        }
+        else {  
+            console.log('Notification tidak didukung di browser ini!');
+        }
+
+        function showNotificationSederhana() {
+            const title = 'Notifikasi Sederhana';
+            const options = {
+                'body': 'Ini adalah kontent notifikasi. \nBisa menggunakan baris baru.',
+                requireInteraction: true // memungkinankan ketika notifikasi muncul, maka notif tersebut tidak akan bilang, kecuali ketika ada action dari user
+            }
+
+            if(Notification.permission === 'granted') {
+                navigator.serviceWorker.ready
+                    .then(registration => {
+                        registration.showNotification(title, options);
+                    });
+            } 
+            else {
+                console.log('Fitur notifikasi tidak diizinkan!');
+            }
+        }
+
+        function showNotificationIcon() {
+            console.log('hai');
+            const title = 'Notifikasi Sederhana dengan icon';
+            const options = {
+                body: 'Ini adalah kontent notifikasi. \nBisa menggunakan baris baru.',
+                icon: '/img/icon-192x192.png',
+                image: '/img/icon-192x192.png' // ini memungkinan menampilkan gambar utuh / penuh di bagian notifikasi
+            }
+
+            if(Notification.permission === 'granted') {
+                navigator.serviceWorker.ready
+                    .then(registration => {
+                        registration.showNotification(title, options);
+                    });
+            } 
+            else {
+                console.log('Fitur notifikasi tidak diizinkan!');
+            }
+        }
+
+        function showNotificationBadge() {
+            console.log('hai');
+            const title = 'Notifikasi Sederhana dengan icon dan badge';
+            const options = {
+                body: 'Ini adalah kontent notifikasi. \nBisa menggunakan baris baru.',
+                badge: '/img/icon-192x192.png',
+                icon: '/img/icon-192x192.png'
+            }
+
+            if(Notification.permission === 'granted') {
+                navigator.serviceWorker.ready
+                    .then(registration => {
+                        registration.showNotification(title, options);
+                    });
+            } 
+            else {
+                console.log('Fitur notifikasi tidak diizinkan!');
+            }
+        }
+
+        function showNotificationActions() {
+            const title = 'Notifikasi dengan Actions';
+            const options = {
+                body: 'Ini adalah kontent notifikasi dengan pilihan actions',
+                action: [
+                    {
+                        action: 'yes-action',
+                        title: 'Ya',
+                        icon: '/img/yes.png'
+                    },
+                    {
+                        action: 'no-action',
+                        title: 'Tidak',
+                        icon: '/img/no.png'
+                    }
+
+                ]
+            }
+
+            if(Notification.permission === 'granted') {
+                navigator.serviceWorker.ready
+                    .then(registration => {
+                        registration.showNotification(title, options);
+                    })
+            }
+            else {
+                console.error('Fitur notifikasi tidak diizinkan!');
+            }
+        }
+
+        function showNotificationTag() {
+            // notifikasi pertama
+            const title1 = 'Notifikasi dengan Tag - 1';
+            const options1 = {
+                body: 'Anggota tag 1',
+                tag: 'message-group-1',
+                renotify: true, // ini memungkinkan apabila notifikasi dengan tag tsb, apabila ditimpa dengan notifikasi baru maka bunyi notifikasi juga akan terjadi
+            }
+            
+            // notifikasi kedua
+            const title2 = 'Notifikasi dengan Tag - 2';
+            const options2 = {
+                body: 'Anggota tag 2',
+                tag: 'message-group-2'
+            }
+
+            const title3 = 'Notifikasi dengan Tag - 3';
+            const options3 = {
+                body: 'Anggota tag 1',
+                tag: 'message-gorup-1',
+                
+            }
+
+            if(Notification.permission === 'granted') {
+                navigator.serviceWorker.ready
+                    .then(registration => {
+                        registration.showNotification(title1, options1);
+                        registration.showNotification(title2, options2);
+                        registration.showNotification(title3, options3);
+                    });
+            }
+            else {
+                console.log('Fitur notifikasi tidak diizinkan!');
+            }
+        }
+
+        function showNotificationSilent() {
+            const title = 'Notifikasi senyap';
+            const options = {
+                silent: true
+            }
+
+            if(Notification.permission === 'granted') {
+                navigator.serviceWorker
+                    .then(registration => {
+                        registration.showNotification(title, options);
+                    })
+            }
+            else {
+                console.log('Fitur notifikasi tidak diizinkan!');
+            }
+        }
+
+    </script>
+</body>
+</html>
