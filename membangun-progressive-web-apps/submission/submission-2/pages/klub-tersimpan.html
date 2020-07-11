@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Informasi Sepak Bola</title>
+    <meta name="description" content="Informasi Sepak Bola" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../assets/css/materialize.min.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#00897B" />
+
+    <!--Import Google Icon Font-->
+    <link href="../assets/css/icon.css" rel="stylesheet">
+
+    <!-- add to home screen for ios -->
+    <link rel="apple-touch-icon" href="../assets/image/icon-128x128.png">
+    <link rel="apple-touch-icon" href="../assets/image/icon-144x144.png">
+    <link rel="apple-touch-icon" href="../assets/image/icon-152x152.png">
+    <link rel="apple-touch-icon" href="../assets/image/icon-192x192.png">
+    <link rel="apple-touch-icon" href="../assets/image/icon-384x384.png">
+    <link rel="apple-touch-icon" href="../assets/image/icon-512x512.png">
+
+</head>
+
+<body>
+
+    <div class="container" id="body-content">
+    </div>
+
+    <script src="../assets/js/materialize.min.js"></script>
+    <script src="../assets/js/idb.js"></script>
+    <script src="../assets/js/db.js"></script>
+</body>
+
+</html>
+
+<script>
+    // Register service worker
+    if ("serviceWorker" in navigator) {
+        window.addEventListener('load', function () {
+            navigator.serviceWorker
+                .register("/service-worker.js")
+                .then(function () {
+                    console.log('Pendaftaran service worker berhasil');
+                })
+                .catch(function () {
+                    console.log('Pendaftaran service worker gagal');
+                });
+        });
+    } else {
+        console.log('service worker tidak didukung pada browser ini');
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+    });
+</script>

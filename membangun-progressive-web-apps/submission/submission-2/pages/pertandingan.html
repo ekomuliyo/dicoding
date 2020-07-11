@@ -1,0 +1,29 @@
+<div class="row">
+    <h5 class="center">JADWAL PERTANDINGAN</h5>
+    <hr>
+    <div class="col s12 m12 l12">
+        <select id="select-league-pertandingan" onchange="tampilkan_pertandingan()">
+            <option value="" disabled selected>Pilih Liga</option>
+            <option value="2021" data-icon="../assets/image/logo-premier-league.webp" selected>Liga Premier Inggris</option>
+            <option value="2014" data-icon="../assets/image/logo-laliga.svg">La Liga Spanyol</option>
+            <option value="2019" data-icon="../assets/image/logo-seria.webp">Liga Italia Seri A</option>
+            <option value="2002" data-icon="../assets/image/logo-bundesliga.webp">Liga Bundes Jerman</option>
+            <option value="2003" data-icon="../assets/image/logo-eredivisie.webp">Eredivisie Belanda</option>
+            <option value="2015" data-icon="../assets/image/logo-ligue1.webp">Liga 1 Prancis</option>
+        </select>
+    </div>
+    <div class="col s12 m12 l12">
+        <input type="text" class="datepicker" id="datepicker" placeholder="Tanggal" onchange="tampilkan_pertandingan()">
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-content">
+        <div class="row">
+            <table class="col s12 l12 highlight">
+                <tbody id="tbody-pertandingan">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

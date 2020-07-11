@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Informasi Sepak Bola</title>
+  <meta name="description" content="Informasi Sepak Bola"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./assets/css/materialize.min.css">
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#66bb6a"/>
+
+  <!--Import Google Icon Font-->
+  <link href="./assets/css/icon.css" rel="stylesheet">
+
+  <!-- add to home screen for ios -->
+  <link rel="apple-touch-icon" href="./assets/image/icon-128x128.png">
+  <link rel="apple-touch-icon" href="./assets/image/icon-144x144.png">
+  <link rel="apple-touch-icon" href="./assets/image/icon-152x152.png">
+  <link rel="apple-touch-icon" href="./assets/image/icon-192x192.png">
+  <link rel="apple-touch-icon" href="./assets/image/icon-384x384.png">
+  <link rel="apple-touch-icon" href="./assets/image/icon-512x512.png">
+  
+  <link rel="icon" href="./assets/image/favicon-32x32.png">
+
+</head>
+<body>
+  <!-- Navigasi -->
+       <nav class="#66bb6a green lighten-1" role="navigation">
+            <div class="nav-wrapper container">
+                <ul class="topnav left hide-on-med-and-down">
+                    <li><a href="#klasemen">Klasemen</a></li>
+                    <li><a href="#pertandingan">Pertandingan</a></li>
+                    <li><a href="#klub-tersimpan">Klub Tersimpan</a></li>
+                </ul>
+                <a href="#" class="brand-logo center flow-text" id="logo-container">
+                    <img src="./assets/image/icon-192x192.png" width="23px" alt="Logo"> Bola
+                </a>
+    
+                <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul class="sidenav" id="nav-mobile">
+                <li>
+                    <div class="user-view">
+                        <div class="background #66bb6a green lighten-1">
+                        </div>
+                        <a href="#"><img class="circle" src="./assets/image/pp.png" alt="Profil"></a>
+                        <a href="#"><span class="white-text name">Eko Muliyo</span></a>
+                        <a href="#"><span class="white-text email">ekomuliyo@gmail.com</span></a>
+                    </div>
+                </li>
+                <li><a href="#klasemen"><i class="material-icons">home</i>Klasemen</a></li>
+                <li><a href="#pertandingan"><i class="material-icons">trending_up</i>Pertandingan</a></li>
+                <li><a href="#klub-tersimpan"><i class="material-icons">save</i>Klub Tersimpan</a></li>
+                </ul>
+            </div>
+        </nav>
+  <!-- Akhir Navigasi -->
+
+  <div class="container" id="body-content"></div>
+
+    <!-- progress -->
+    <div class="preloader-wrapper small active" id="progress-bar" style="position: fixed; top: 50%; left: 50%; z-index: 10060 !important; display: none;">
+        <div class="spinner-layer spinner-green-only">
+        <div class="circle-clipper left">
+            <div class="circle"></div>
+        </div><div class="gap-patch">
+            <div class="circle"></div>
+        </div><div class="circle-clipper right">
+            <div class="circle"></div>
+        </div>
+        </div>
+    </div>
+  <script src="./assets/js/materialize.min.js"></script>
+  <script src="./assets/js/idb.js"></script>
+  <script src="./assets/js/db.js"></script>
+  <script src="./assets/js/nav.js"></script>
+  <script src="./assets/js/api.js"></script>
+  <script src="./assets/js/script.js"></script>
+</body>
+</html>
