@@ -28,7 +28,8 @@ const js = [
   'idb.js',
   'materialize.min.js',
   'nav.js',
-  'script.js'
+  'script.js',
+  'script-klub.js'
 ].map(js => `/assets/js/${js}`);
 
 const urlsToCache = [

@@ -42,30 +42,33 @@ function requestPermission() {
                     return;
                 }
 
-                if(('PushManager' in window)) {
-                    navigator.serviceWorker.getRegistration()
-                        .then(registration => {
-                            registration.pushManager.subscribe({
-                                userVisibleOnly: true,
-                                applicationServerKey: urlBase64ToUint8Array('BCP0PM0tys6OL7w-HJKrnv1bvHY-JV5r5nEk1PsOhCNtLbrzfrc1ZQ0heTLn-EpUI7wTDiDdWN9ZtEt_BU2wJ2g')
+                navigator.serviceWorker.ready.then(() => {
+                    if(('PushManager' in window)) {
+                        navigator.serviceWorker.getRegistration()
+                            .then(registration => {
+                                registration.pushManager.subscribe({
+                                    userVisibleOnly: true,
+                                    applicationServerKey: urlBase64ToUint8Array('BCP0PM0tys6OL7w-HJKrnv1bvHY-JV5r5nEk1PsOhCNtLbrzfrc1ZQ0heTLn-EpUI7wTDiDdWN9ZtEt_BU2wJ2g')
+                                })
+                                .then(subscribe => {
+                                    console.log(`Berhasil melakukan subcribe dengan endpoint: ${subscribe.endpoint}`);
+                                    
+                                    console.log(`Berhasil melakukan subcribe dengan p256dh key : ${btoa(String.fromCharCode.apply(
+                                        null, new Uint8Array(subscribe.getKey('p256dh'))
+                                    ))}`);
+    
+                                    console.log(`Berhasil melakukan subcribe dengan auth key : ${btoa(String.fromCharCode.apply(
+                                        null, new Uint8Array(subscribe.getKey('auth'))
+                                    ))}`);
+                                    
+                                })
+                                .catch(err => {
+                                    console.error(`Tidak dapat melakukan subcribe ${err.message}`)
+                                })
                             })
-                            .then(subscribe => {
-                                console.log(`Berhasil melakukan subcribe dengan endpoint: ${subscribe.endpoint}`);
-                                
-                                console.log(`Berhasil melakukan subcribe dengan p256dh key : ${btoa(String.fromCharCode.apply(
-                                    null, new Uint8Array(subscribe.getKey('p256dh'))
-                                ))}`);
+                    }
+                })
 
-                                console.log(`Berhasil melakukan subcribe dengan auth key : ${btoa(String.fromCharCode.apply(
-                                    null, new Uint8Array(subscribe.getKey('auth'))
-                                ))}`);
-                                
-                            })
-                            .catch(err => {
-                                console.error(`Tidak dapat melakukan subcribe ${err.message}`)
-                            })
-                        })
-                }
         });
     }
 }

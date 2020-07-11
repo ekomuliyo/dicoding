@@ -19,6 +19,300 @@ const error = (err) => {
     console.log('Error : ' + err);
 }
 
+const renderTableKlasemen = (data) => {
+    let tableTr = '';
+    data.standings[0].table.forEach((klub, index) => {
+        tableTr += `
+            <tr>
+                <td>${++index}</td>
+                <td>
+                    <a href="./klub.html?id=${klub.team.id}">
+                    <img src="${klub.team.crestUrl}" width="17px" alt="Logo Klub ${klub.team.name}"> &nbsp; ${klub.team.name}
+                    </a>
+                </td>
+                <td>${klub.playedGames}</td>
+                <td>${klub.won}</td>
+                <td>${klub.draw}</td>
+                <td>${klub.lost}</td>
+                <td>${klub.points}</td>
+            </tr>
+        `;
+    });
+    return tableTr;
+}
+
+const renderTablePertandingan = (data) => {
+    let tableTr = '';
+    if(data.matches.length > 0) {
+        data.matches.forEach(pertandingan => {
+            const convertDate = new Date(pertandingan.utcDate);
+            
+            hari = convertDate.getDay();
+            switch(hari) {
+                case 0: hari = "Minggu"; break;
+                case 1: hari = "Senin"; break;
+                case 2: hari = "Selasa"; break;
+                case 3: hari = "Rabu"; break;
+                case 4: hari = "Kamis"; break;
+                case 5: hari = "Jum'at"; break;
+                case 6: hari = "Sabtu"; break;
+            }
+
+            const tanggal = `${convertDate.getDate()}/${convertDate.getMonth()}/${convertDate.getFullYear()}` ;
+            const jam = convertDate.getHours();
+            const menit = convertDate.getMinutes();
+            tableTr += `
+                <tr>
+                    <td>${hari}, ${tanggal} </br> ${jam < 10 ? `0${jam}` : jam} : ${menit < 10 ? `0${menit}` : menit}</td>
+                    <td class="center-align">${pertandingan.homeTeam.name}</td>
+                    <td class="center-align">-</td>
+                    <td class="center-align">${pertandingan.awayTeam.name}</td>
+                </tr>
+            `;
+        });
+    }
+    else {
+        tableTr = `<tr>
+            <td colspan="4">Tidak Ada Jadwal Pertandingan!</td>
+        </tr>`
+    }
+
+    return tableTr;
+}
+
+const renderHtmlKlubById = (data) => {
+    const klubHtml = `
+        <div class="col s12 m7">
+        <div class="card">
+            <div class="card-content">
+                <div class="row">
+                    <div class="col s12 m12 l12 center-align">
+                        <img src="${data.crestUrl}" style="max-width: 150px;" alt="Logo Klub ${data.shortName}">
+                    </div>
+                    <div class="col s12 m12 l12 center-align">
+                        <h4>${data.shortName}</h4>
+                    </div>
+                    <div class="col s3 m3 l3">
+                        <span>Nama</span>
+                    </div>
+                    <div class="col s9 m9 l9 left-align">
+                        <span>: ${data.name}</span>
+                    </div>
+                    <div class="col s3 m3 l3">
+                        <span>Alamat</span>
+                    </div>
+                    <div class="col s9 m9 l9 left-align">
+                        <span>: ${data.address}</span>
+                    </div>
+                    <div class="col s3 m3 l3">
+                        <span>Berdiri</span>
+                    </div>
+                    <div class="col s9 m9 l9 left-align">
+                        <span>: ${data.founded}</span>
+                    </div>
+                    <div class="col s3 m3 l3">
+                        <span>Stadion</span>
+                    </div>
+                    <div class="col s9 m9 l9 left-align">
+                        <span>: ${data.venue}</span>
+                    </div>
+                    <div class="col s3 m3 l3">
+                        <span>Website</span>
+                    </div>
+                    <div class="col s9 m9 l9 left-align">
+                        <span>: <a href="${data.website}" target="_blank">${data.website}</a></span>
+                    </div>
+                    <div class="col s3 m3 l3">
+                        <span>Email</span>
+                    </div>
+                    <div class="col s9 m9 l9 left-align">
+                        <span>: ${data.email ? data.email : '-'}</span>
+                    </div>
+                    <div class="col s12 m12 l12">
+                        <h5>Pemain Tim</h5>
+                        <table class="highlight">
+                            <thead>
+                                <tr>
+                                    <th class="center-align">Nama</th>
+                                    <th class="center-align">Posisi</th>
+                                    <th class="center-align">Asal Negara</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${data.squad.map(squad => {
+                                    if(squad.role === "PLAYER") {
+                                        return `
+                                        <tr>
+                                            <td>${squad.name}</td>
+                                            <td class="center-align">${squad.position}</td>
+                                            <td class="center-align">${squad.nationality}</td>
+                                        </tr>`
+                                    }
+                                }).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+
+    return klubHtml;
+}
+
+const renderHtmlAllKlubSaved = (klubs) => {
+    let klubHtml = '';
+    if(klubs.length > 0) {
+        klubs.forEach(klub => {
+            klubHtml += `
+                <div class="col s12 m7">
+                    <div class="card">
+                        <a href="./klub.html?id=${klub.id}&saved=true">
+                        <div class="card-content">
+                            <div class="row">
+                                    <div class="col s12 m12 l12 center-align">
+                                        <img src="${klub.crestUrl}" style="max-width: 150px;" alt="Logo Klub ${klub.shortName}">
+                                    </div>
+                                    <div class="col s12 m12 l12 center-align">
+                                        <h4>${klub.shortName}</h4>
+                                    </div>
+                                    <div class="col s3 m3 l3">
+                                        <span>Nama</span>
+                                    </div>
+                                    <div class="col s9 m9 l9 left-align">
+                                        <span>: ${klub.name}</span>
+                                    </div>
+                                    <div class="col s3 m3 l3">
+                                        <span>Alamat</span>
+                                    </div>
+                                    <div class="col s9 m9 l9 left-align">
+                                        <span>: ${klub.address}</span>
+                                    </div>
+                                    <div class="col s3 m3 l3">
+                                        <span>Berdiri</span>
+                                    </div>
+                                    <div class="col s9 m9 l9 left-align">
+                                        <span>: ${klub.founded}</span>
+                                    </div>
+                                    <div class="col s3 m3 l3">
+                                        <span>Stadion</span>
+                                    </div>
+                                    <div class="col s9 m9 l9 left-align">
+                                        <span>: ${klub.venue}</span>
+                                    </div>
+                                    <div class="col s3 m3 l3">
+                                        <span>Website</span>
+                                    </div>
+                                    <div class="col s9 m9 l9 left-align">
+                                        <span>: <a href="${klub.website}" target="_blank">${klub.website}</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            `;
+
+        });    
+    }
+    else {
+        klubHtml = `
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 m12 l12 center-align">
+                        <h5>Tidak Ada Klub Tersimpan :)</h5>
+                    </div>
+                </div>
+            </div>
+        `
+    }
+
+    return klubHtml;
+}
+
+const renderHtmlSavedKlubById = (klub) => {
+    const klubHtml = `
+        <div class="col s12 m7">
+        <div class="card">
+            <div class="card-content">
+                <div class="row">
+                    <div class="col s12 m12 l12 center-align">
+                        <img src="${klub.crestUrl}" style="max-width: 150px;" alt="Logo Klub ${klub.shortName}">
+                    </div>
+                    <div class="col s12 m12 l12 center-align">
+                        <h4>${klub.shortName}</h4>
+                    </div>
+                    <div class="col s3 m3 l3">
+                        <span>Nama</span>
+                    </div>
+                    <div class="col s9 m9 l9 left-align">
+                        <span>: ${klub.name}</span>
+                    </div>
+                    <div class="col s3 m3 l3">
+                        <span>Alamat</span>
+                    </div>
+                    <div class="col s9 m9 l9 left-align">
+                        <span>: ${klub.address}</span>
+                    </div>
+                    <div class="col s3 m3 l3">
+                        <span>Berdiri</span>
+                    </div>
+                    <div class="col s9 m9 l9 left-align">
+                        <span>: ${klub.founded}</span>
+                    </div>
+                    <div class="col s3 m3 l3">
+                        <span>Stadion</span>
+                    </div>
+                    <div class="col s9 m9 l9 left-align">
+                        <span>: ${klub.venue}</span>
+                    </div>
+                    <div class="col s3 m3 l3">
+                        <span>Website</span>
+                    </div>
+                    <div class="col s9 m9 l9 left-align">
+                        <span>: <a href="${klub.website}" target="_blank">${klub.website}</a></span>
+                    </div>
+                    <div class="col s3 m3 l3">
+                        <span>Email</span>
+                    </div>
+                    <div class="col s9 m9 l9 left-align">
+                        <span>: ${klub.email ? klub.email : '-'}</span>
+                    </div>
+                    <div class="col s12 m12 l12">
+                        <h5>Pemain Tim</h5>
+                        <table class="highlight">
+                            <thead>
+                                <tr>
+                                    <th class="center-align">Nama</th>
+                                    <th class="center-align">Posisi</th>
+                                    <th class="center-align">Asal Negara</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${klub.squad.map(squad => {
+                                    if(squad.role === "PLAYER") {
+                                        return `
+                                        <tr>
+                                            <td>${squad.name}</td>
+                                            <td class="center-align">${squad.position}</td>
+                                            <td class="center-align">${squad.nationality}</td>
+                                        </tr>`
+                                    }
+                                }).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+
+    return klubHtml;
+   
+}
+
 const getKlasemen = (idLeague) => {
 
     // handel agar request data api cache terlebih dahulu
@@ -29,26 +323,8 @@ const getKlasemen = (idLeague) => {
                 if(response) {
                     response.json()
                         .then(data => {
-                            let tableTr = '';
-                            data.standings[0].table.forEach((klub, index) => {
-                                tableTr += `
-                                    <tr>
-                                        <td>${++index}</td>
-                                        <td>
-                                            <a href="./klub.html?id=${klub.team.id}">
-                                            <img src="${klub.team.crestUrl}" width="17px" alt="Logo Klub ${klub.team.name}"> &nbsp; ${klub.team.name}
-                                            </a>
-                                        </td>
-                                        <td>${klub.playedGames}</td>
-                                        <td>${klub.won}</td>
-                                        <td>${klub.draw}</td>
-                                        <td>${klub.lost}</td>
-                                        <td>${klub.points}</td>
-                                    </tr>
-                                `;
-                            });
                     
-                            document.getElementById('tbody-klasemen').innerHTML = tableTr;
+                            document.getElementById('tbody-klasemen').innerHTML = renderTableKlasemen(data);
                 
                             document.getElementById('progress-bar').style.display = 'none';
                         })
@@ -60,26 +336,8 @@ const getKlasemen = (idLeague) => {
         .then(status)
         .then(json)
         .then(data => {
-            let tableTr = '';
-            data.standings[0].table.forEach((klub, index) => {
-                tableTr += `
-                    <tr>
-                        <td>${++index}</td>
-                        <td>
-                            <a href="./klub.html?id=${klub.team.id}">
-                            <img src="${klub.team.crestUrl}" width="17px" alt="Logo Klub ${klub.team.name}"> &nbsp; ${klub.team.name}
-                            </a>
-                        </td>
-                        <td>${klub.playedGames}</td>
-                        <td>${klub.won}</td>
-                        <td>${klub.draw}</td>
-                        <td>${klub.lost}</td>
-                        <td>${klub.points}</td>
-                    </tr>
-                `;
-            });
     
-            document.getElementById('tbody-klasemen').innerHTML = tableTr;
+            document.getElementById('tbody-klasemen').innerHTML = renderTableKlasemen(data);
 
             document.getElementById('progress-bar').style.display = 'none';
         })
@@ -95,42 +353,9 @@ const getPertandingan = (idLeague, date) => {
                 if(response) {
                     response.json()
                         .then(data => {
-                            let tableTr = '';
-                            if(data.matches.length > 0) {
-                                data.matches.forEach(pertandingan => {
-                                    const convertDate = new Date(pertandingan.utcDate);
-                                    
-                                    hari = convertDate.getDay();
-                                    switch(hari) {
-                                        case 0: hari = "Minggu"; break;
-                                        case 1: hari = "Senin"; break;
-                                        case 2: hari = "Selasa"; break;
-                                        case 3: hari = "Rabu"; break;
-                                        case 4: hari = "Kamis"; break;
-                                        case 5: hari = "Jum'at"; break;
-                                        case 6: hari = "Sabtu"; break;
-                                    }
                     
-                                    const tanggal = `${convertDate.getDate()}/${convertDate.getMonth()}/${convertDate.getFullYear()}` ;
-                                    const jam = convertDate.getHours();
-                                    const menit = convertDate.getMinutes();
-                                    tableTr += `
-                                        <tr>
-                                            <td>${hari}, ${tanggal} </br> ${jam < 10 ? `0${jam}` : jam} : ${menit < 10 ? `0${menit}` : menit}</td>
-                                            <td class="center-align">${pertandingan.homeTeam.name}</td>
-                                            <td class="center-align">-</td>
-                                            <td class="center-align">${pertandingan.awayTeam.name}</td>
-                                        </tr>
-                                    `;
-                                });
-                            }
-                            else {
-                                tableTr = `<tr>
-                                    <td colspan="4">Tidak Ada Jadwal Pertandingan!</td>
-                                </tr>`
-                            }
-                    
-                            document.getElementById('tbody-pertandingan').innerHTML = tableTr;
+                            document.getElementById('tbody-pertandingan').innerHTML = renderTablePertandingan(data);
+                            
                             document.getElementById('progress-bar').style.display = 'none';
                         })
                 }
@@ -141,42 +366,8 @@ const getPertandingan = (idLeague, date) => {
         .then(status)
         .then(json)
         .then(data => {
-            let tableTr = '';
-            if(data.matches.length > 0) {
-                data.matches.forEach(pertandingan => {
-                    const convertDate = new Date(pertandingan.utcDate);
-                    
-                    hari = convertDate.getDay();
-                    switch(hari) {
-                        case 0: hari = "Minggu"; break;
-                        case 1: hari = "Senin"; break;
-                        case 2: hari = "Selasa"; break;
-                        case 3: hari = "Rabu"; break;
-                        case 4: hari = "Kamis"; break;
-                        case 5: hari = "Jum'at"; break;
-                        case 6: hari = "Sabtu"; break;
-                    }
-
-                    const tanggal = `${convertDate.getDate()}/${convertDate.getMonth()}/${convertDate.getFullYear()}` ;
-                    const jam = convertDate.getHours();
-                    const menit = convertDate.getMinutes();
-                    tableTr += `
-                        <tr>
-                            <td>${hari}, ${tanggal} </br> ${jam < 10 ? `0${jam}` : jam} : ${menit < 10 ? `0${menit}` : menit}</td>
-                            <td class="center-align">${pertandingan.homeTeam.name}</td>
-                            <td class="center-align">-</td>
-                            <td class="center-align">${pertandingan.awayTeam.name}</td>
-                        </tr>
-                    `;
-                });        
-            }
-            else {
-                tableTr = `<tr>
-                    <td colspan="4">Tidak Ada Jadwal Pertandingan!</td>
-                </tr>`
-            }
-
-            document.getElementById('tbody-pertandingan').innerHTML = tableTr;
+            document.getElementById('tbody-pertandingan').innerHTML = renderTablePertandingan(data);
+            
             document.getElementById('progress-bar').style.display = 'none';
         });
     
@@ -201,84 +392,8 @@ const getKlubById = () => {
                     if(response) {
                         response.json()
                             .then(data => {
-                                const klubHtml = `
-                                    <div class="col s12 m7">
-                                    <div class="card">
-                                        <div class="card-content">
-                                            <div class="row">
-                                                <div class="col s12 m12 l12 center-align">
-                                                    <img src="${data.crestUrl}" style="max-width: 150px;" alt="Logo Klub ${data.shortName}">
-                                                </div>
-                                                <div class="col s12 m12 l12 center-align">
-                                                    <h4>${data.shortName}</h4>
-                                                </div>
-                                                <div class="col s3 m3 l3">
-                                                    <span>Nama</span>
-                                                </div>
-                                                <div class="col s9 m9 l9 left-align">
-                                                    <span>: ${data.name}</span>
-                                                </div>
-                                                <div class="col s3 m3 l3">
-                                                    <span>Alamat</span>
-                                                </div>
-                                                <div class="col s9 m9 l9 left-align">
-                                                    <span>: ${data.address}</span>
-                                                </div>
-                                                <div class="col s3 m3 l3">
-                                                    <span>Berdiri</span>
-                                                </div>
-                                                <div class="col s9 m9 l9 left-align">
-                                                    <span>: ${data.founded}</span>
-                                                </div>
-                                                <div class="col s3 m3 l3">
-                                                    <span>Stadion</span>
-                                                </div>
-                                                <div class="col s9 m9 l9 left-align">
-                                                    <span>: ${data.venue}</span>
-                                                </div>
-                                                <div class="col s3 m3 l3">
-                                                    <span>Website</span>
-                                                </div>
-                                                <div class="col s9 m9 l9 left-align">
-                                                    <span>: <a href="${data.website}" target="_blank">${data.website}</a></span>
-                                                </div>
-                                                <div class="col s3 m3 l3">
-                                                    <span>Email</span>
-                                                </div>
-                                                <div class="col s9 m9 l9 left-align">
-                                                    <span>: ${data.email ? data.email : '-'}</span>
-                                                </div>
-                                                <div class="col s12 m12 l12">
-                                                    <h5>Pemain Tim</h5>
-                                                    <table class="highlight">
-                                                        <thead>
-                                                            <tr>
-                                                                <th class="center-align">Nama</th>
-                                                                <th class="center-align">Posisi</th>
-                                                                <th class="center-align">Asal Negara</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            ${data.squad.map(squad => {
-                                                                if(squad.role === "PLAYER") {
-                                                                    return `
-                                                                    <tr>
-                                                                        <td>${squad.name}</td>
-                                                                        <td class="center-align">${squad.position}</td>
-                                                                        <td class="center-align">${squad.nationality}</td>
-                                                                    </tr>`
-                                                                }
-                                                            }).join('')}
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                `;
                                         
-                                document.getElementById('body-content').innerHTML = klubHtml;
+                                document.getElementById('body-content').innerHTML = renderHtmlKlubById(data);
                 
                                 document.getElementById('progress-bar').style.display = 'none';
                                 
@@ -294,84 +409,8 @@ const getKlubById = () => {
             .then(status)
             .then(json)
             .then(data => {
-                const klubHtml = `
-                    <div class="col s12 m7">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="row">
-                                <div class="col s12 m12 l12 center-align">
-                                    <img src="${data.crestUrl}" style="max-width: 150px;" alt="Logo Klub ${data.shortName}">
-                                </div>
-                                <div class="col s12 m12 l12 center-align">
-                                    <h4>${data.shortName}</h4>
-                                </div>
-                                <div class="col s3 m3 l3">
-                                    <span>Nama</span>
-                                </div>
-                                <div class="col s9 m9 l9 left-align">
-                                    <span>: ${data.name}</span>
-                                </div>
-                                <div class="col s3 m3 l3">
-                                    <span>Alamat</span>
-                                </div>
-                                <div class="col s9 m9 l9 left-align">
-                                    <span>: ${data.address}</span>
-                                </div>
-                                <div class="col s3 m3 l3">
-                                    <span>Berdiri</span>
-                                </div>
-                                <div class="col s9 m9 l9 left-align">
-                                    <span>: ${data.founded}</span>
-                                </div>
-                                <div class="col s3 m3 l3">
-                                    <span>Stadion</span>
-                                </div>
-                                <div class="col s9 m9 l9 left-align">
-                                    <span>: ${data.venue}</span>
-                                </div>
-                                <div class="col s3 m3 l3">
-                                    <span>Website</span>
-                                </div>
-                                <div class="col s9 m9 l9 left-align">
-                                    <span>: <a href="${data.website}" target="_blank">${data.website}</a></span>
-                                </div>
-                                <div class="col s3 m3 l3">
-                                    <span>Email</span>
-                                </div>
-                                <div class="col s9 m9 l9 left-align">
-                                    <span>: ${data.email ? data.email : '-'}</span>
-                                </div>
-                                <div class="col s12 m12 l12">
-                                    <h5>Pemain Tim</h5>
-                                    <table class="highlight">
-                                        <thead>
-                                            <tr>
-                                                <th class="center-align">Nama</th>
-                                                <th class="center-align">Posisi</th>
-                                                <th class="center-align">Asal Negara</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            ${data.squad.map(squad => {
-                                                if(squad.role === "PLAYER") {
-                                                    return `
-                                                    <tr>
-                                                        <td>${squad.name}</td>
-                                                        <td class="center-align">${squad.position}</td>
-                                                        <td class="center-align">${squad.nationality}</td>
-                                                    </tr>`
-                                                }
-                                            }).join('')}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                `;
-                        
-                document.getElementById('body-content').innerHTML = klubHtml;
+       
+                document.getElementById('body-content').innerHTML = renderHtmlKlubById(data);;
 
                 document.getElementById('progress-bar').style.display = 'none';
                 
@@ -385,74 +424,7 @@ const getKlubById = () => {
  
 const getAllKlubSaved = () => {
     getAll().then(klubs => {
-        
-        let klubHtml = '';
-        if(klubs.length > 0) {
-            klubs.forEach(klub => {
-                klubHtml += `
-                    <div class="col s12 m7">
-                        <div class="card">
-                            <a href="./klub.html?id=${klub.id}&saved=true">
-                            <div class="card-content">
-                                <div class="row">
-                                        <div class="col s12 m12 l12 center-align">
-                                            <img src="${klub.crestUrl}" style="max-width: 150px;" alt="Logo Klub ${klub.shortName}">
-                                        </div>
-                                        <div class="col s12 m12 l12 center-align">
-                                            <h4>${klub.shortName}</h4>
-                                        </div>
-                                        <div class="col s3 m3 l3">
-                                            <span>Nama</span>
-                                        </div>
-                                        <div class="col s9 m9 l9 left-align">
-                                            <span>: ${klub.name}</span>
-                                        </div>
-                                        <div class="col s3 m3 l3">
-                                            <span>Alamat</span>
-                                        </div>
-                                        <div class="col s9 m9 l9 left-align">
-                                            <span>: ${klub.address}</span>
-                                        </div>
-                                        <div class="col s3 m3 l3">
-                                            <span>Berdiri</span>
-                                        </div>
-                                        <div class="col s9 m9 l9 left-align">
-                                            <span>: ${klub.founded}</span>
-                                        </div>
-                                        <div class="col s3 m3 l3">
-                                            <span>Stadion</span>
-                                        </div>
-                                        <div class="col s9 m9 l9 left-align">
-                                            <span>: ${klub.venue}</span>
-                                        </div>
-                                        <div class="col s3 m3 l3">
-                                            <span>Website</span>
-                                        </div>
-                                        <div class="col s9 m9 l9 left-align">
-                                            <span>: <a href="${klub.website}" target="_blank">${klub.website}</a></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                `;
-
-            });    
-        }
-        else {
-            klubHtml = `
-                <div class="container">
-                    <div class="row">
-                        <div class="col s12 m12 l12 center-align">
-                            <h5>Tidak Ada Klub Tersimpan :)</h5>
-                        </div>
-                    </div>
-                </div>
-            `
-        }
-
-        document.getElementById('body-content').innerHTML = klubHtml;
+        document.getElementById('body-content').innerHTML = renderHtmlAllKlubSaved(klubs);
     })
 }
 
@@ -463,84 +435,8 @@ const getSavedKlubById = (id) => {
     document.getElementById('progress-bar').style.display = 'block';
 
     getById(idKlub).then(klub => {
-        const klubHtml = `
-            <div class="col s12 m7">
-            <div class="card">
-                <div class="card-content">
-                    <div class="row">
-                        <div class="col s12 m12 l12 center-align">
-                            <img src="${klub.crestUrl}" style="max-width: 150px;" alt="Logo Klub ${klub.shortName}">
-                        </div>
-                        <div class="col s12 m12 l12 center-align">
-                            <h4>${klub.shortName}</h4>
-                        </div>
-                        <div class="col s3 m3 l3">
-                            <span>Nama</span>
-                        </div>
-                        <div class="col s9 m9 l9 left-align">
-                            <span>: ${klub.name}</span>
-                        </div>
-                        <div class="col s3 m3 l3">
-                            <span>Alamat</span>
-                        </div>
-                        <div class="col s9 m9 l9 left-align">
-                            <span>: ${klub.address}</span>
-                        </div>
-                        <div class="col s3 m3 l3">
-                            <span>Berdiri</span>
-                        </div>
-                        <div class="col s9 m9 l9 left-align">
-                            <span>: ${klub.founded}</span>
-                        </div>
-                        <div class="col s3 m3 l3">
-                            <span>Stadion</span>
-                        </div>
-                        <div class="col s9 m9 l9 left-align">
-                            <span>: ${klub.venue}</span>
-                        </div>
-                        <div class="col s3 m3 l3">
-                            <span>Website</span>
-                        </div>
-                        <div class="col s9 m9 l9 left-align">
-                            <span>: <a href="${klub.website}" target="_blank">${klub.website}</a></span>
-                        </div>
-                        <div class="col s3 m3 l3">
-                            <span>Email</span>
-                        </div>
-                        <div class="col s9 m9 l9 left-align">
-                            <span>: ${klub.email ? klub.email : '-'}</span>
-                        </div>
-                        <div class="col s12 m12 l12">
-                            <h5>Pemain Tim</h5>
-                            <table class="highlight">
-                                <thead>
-                                    <tr>
-                                        <th class="center-align">Nama</th>
-                                        <th class="center-align">Posisi</th>
-                                        <th class="center-align">Asal Negara</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    ${klub.squad.map(squad => {
-                                        if(squad.role === "PLAYER") {
-                                            return `
-                                            <tr>
-                                                <td>${squad.name}</td>
-                                                <td class="center-align">${squad.position}</td>
-                                                <td class="center-align">${squad.nationality}</td>
-                                            </tr>`
-                                        }
-                                    }).join('')}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        `;
-                
-        document.getElementById('body-content').innerHTML = klubHtml;
+     
+        document.getElementById('body-content').innerHTML = renderHtmlSavedKlubById(klub);
 
         document.getElementById('progress-bar').style.display = 'none';
         
